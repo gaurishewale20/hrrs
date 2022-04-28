@@ -1,0 +1,39 @@
+CREATE TABLE `reservation` (
+  `reservation_id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `booking_date` date DEFAULT NULL,
+  `check_in_date` date DEFAULT NULL,
+  `check_out_date` date DEFAULT NULL,
+  `room_type` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`reservation_id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `role` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(255) DEFAULT NULL,
+  `user_pswd` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `phone` bigint DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `gender` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `user_role` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `role_id` int DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+->Register admin account using website
+->perform this query on database: "update user_role set role_id = 1 where user_id = 1;" ->Assuming admin's id in user table is 1
